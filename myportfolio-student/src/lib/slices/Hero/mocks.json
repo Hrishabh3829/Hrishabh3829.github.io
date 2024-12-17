@@ -3,6 +3,11 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
+			"tag_line": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Creative Developer"
+			},
 			"first_name": {
 				"__TYPE__": "FieldContent",
 				"type": "Text",
@@ -12,11 +17,6 @@
 				"__TYPE__": "FieldContent",
 				"type": "Text",
 				"value": "Gupta"
-			},
-			"tag_line": {
-				"__TYPE__": "FieldContent",
-				"type": "Text",
-				"value": "Creative Developer"
 			}
 		},
 		"items": []
