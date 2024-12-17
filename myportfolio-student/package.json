@@ -14,6 +14,9 @@
 		"slicemachine": "start-slicemachine"
 	},
 	"devDependencies": {
+		"@iconify-json/fa-brands": "^1.2.1",
+		"@iconify-json/simple-icons": "^1.2.16",
+		"@iconify-json/uiw": "^1.2.1",
 		"@slicemachine/adapter-sveltekit": "^0.3.60",
 		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/kit": "^2.5.15",
@@ -36,6 +39,7 @@
 		"typescript": "^5.4.5",
 		"typescript-eslint": "^8.0.0-alpha.20",
 		"typescript-svelte-plugin": "^0.3.38",
+		"unplugin-icons": "^0.22.0",
 		"vite": "^5.3.1"
 	},
 	"type": "module",
