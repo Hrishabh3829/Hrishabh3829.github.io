@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = HeroSlice | RichTextSlice;
+type PageDocumentDataSlicesSlice = BiographySlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -235,6 +235,88 @@ export type SettingsDocument<Lang extends string = string> = prismic.PrismicDocu
 export type AllDocumentTypes = PageDocument | SettingsDocument;
 
 /**
+ * Primary content in *Biography → Default → Primary*
+ */
+export interface BiographySliceDefaultPrimary {
+	/**
+	 * Heading field in *Biography → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: biography.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Biography → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: biography.default.primary.description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Button Label field in *Biography → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: biography.default.primary.button_label
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	button_label: prismic.KeyTextField;
+
+	/**
+	 * Button Link field in *Biography → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: biography.default.primary.button_link
+	 * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+	 */
+	button_link: prismic.LinkField;
+
+	/**
+	 * Avatar field in *Biography → Default → Primary*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: biography.default.primary.avatar
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	avatar: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for Biography Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BiographySliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<BiographySliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Biography*
+ */
+type BiographySliceVariation = BiographySliceDefault;
+
+/**
+ * Biography Shared Slice
+ *
+ * - **API ID**: `biography`
+ * - **Description**: Biography
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BiographySlice = prismic.SharedSlice<'biography', BiographySliceVariation>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -296,48 +378,6 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
-/**
- * Primary content in *RichText → Default → Primary*
- */
-export interface RichTextSliceDefaultPrimary {
-	/**
-	 * Content field in *RichText → Default → Primary*
-	 *
-	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Lorem ipsum...
-	 * - **API ID Path**: rich_text.default.primary.content
-	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-	 */
-	content: prismic.RichTextField;
-}
-
-/**
- * Default variation for RichText Slice
- *
- * - **API ID**: `default`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<
-	'default',
-	Simplify<RichTextSliceDefaultPrimary>,
-	never
->;
-
-/**
- * Slice variation for *RichText*
- */
-type RichTextSliceVariation = RichTextSliceDefault;
-
-/**
- * RichText Shared Slice
- *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
-
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -366,14 +406,14 @@ declare module '@prismicio/client' {
 			SettingsDocumentData,
 			SettingsDocumentDataNavItemItem,
 			AllDocumentTypes,
+			BiographySlice,
+			BiographySliceDefaultPrimary,
+			BiographySliceVariation,
+			BiographySliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
-			HeroSliceDefault,
-			RichTextSlice,
-			RichTextSliceDefaultPrimary,
-			RichTextSliceVariation,
-			RichTextSliceDefault
+			HeroSliceDefault
 		};
 	}
 }
