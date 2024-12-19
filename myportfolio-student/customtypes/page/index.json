@@ -27,10 +27,10 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
-						"hero": {
+						"biography": {
 							"type": "SharedSlice"
 						},
-						"rich_text": {
+						"hero": {
 							"type": "SharedSlice"
 						}
 					}
