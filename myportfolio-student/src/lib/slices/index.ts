@@ -2,8 +2,10 @@
 
 import Biography from './Biography/index.svelte';
 import Hero from './Hero/index.svelte';
+import TechList from './TechList/index.svelte';
 
 export const components = {
 	biography: Biography,
-	hero: Hero
+	hero: Hero,
+	tech_list: TechList
 };
