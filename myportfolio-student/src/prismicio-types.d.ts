@@ -4,7 +4,7 @@ import type * as prismic from '@prismicio/client';
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = TechListSlice | BiographySlice | HeroSlice;
+type PageDocumentDataSlicesSlice = ExperienceSlice | TechListSlice | BiographySlice | HeroSlice;
 
 /**
  * Content for Page documents
@@ -317,6 +317,103 @@ type BiographySliceVariation = BiographySliceDefault;
 export type BiographySlice = prismic.SharedSlice<'biography', BiographySliceVariation>;
 
 /**
+ * Item in *Experience → Default → Primary → item*
+ */
+export interface ExperienceSliceDefaultPrimaryItemItem {
+	/**
+	 * Title field in *Experience → Default → Primary → item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: experience.default.primary.item[].title
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Time Period field in *Experience → Default → Primary → item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: experience.default.primary.item[].time_period
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	time_period: prismic.KeyTextField;
+
+	/**
+	 * Institution field in *Experience → Default → Primary → item*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: experience.default.primary.item[].institution
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	institution: prismic.KeyTextField;
+
+	/**
+	 * Description field in *Experience → Default → Primary → item*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: experience.default.primary.item[].description
+	 * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+	 */
+	description: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Experience → Default → Primary*
+ */
+export interface ExperienceSliceDefaultPrimary {
+	/**
+	 * Heading field in *Experience → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: experience.default.primary.heading
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	heading: prismic.KeyTextField;
+
+	/**
+	 * item field in *Experience → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: experience.default.primary.item[]
+	 * - **Documentation**: https://prismic.io/docs/field#group
+	 */
+	item: prismic.GroupField<Simplify<ExperienceSliceDefaultPrimaryItemItem>>;
+}
+
+/**
+ * Default variation for Experience Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ExperienceSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<ExperienceSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *Experience*
+ */
+type ExperienceSliceVariation = ExperienceSliceDefault;
+
+/**
+ * Experience Shared Slice
+ *
+ * - **API ID**: `experience`
+ * - **Description**: Experience
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ExperienceSlice = prismic.SharedSlice<'experience', ExperienceSliceVariation>;
+
+/**
  * Primary content in *Hero → Default → Primary*
  */
 export interface HeroSliceDefaultPrimary {
@@ -487,6 +584,11 @@ declare module '@prismicio/client' {
 			BiographySliceDefaultPrimary,
 			BiographySliceVariation,
 			BiographySliceDefault,
+			ExperienceSlice,
+			ExperienceSliceDefaultPrimaryItemItem,
+			ExperienceSliceDefaultPrimary,
+			ExperienceSliceVariation,
+			ExperienceSliceDefault,
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
