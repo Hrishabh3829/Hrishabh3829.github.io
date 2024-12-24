@@ -6,7 +6,11 @@ export async function load({ params, fetch, cookies }) {
 	const page = await client.getByUID('blogpost', params.uid);
 
 	return {
-		page
+		page,
+		title: page.data.title,
+		meta_description: page.data.meta_description,
+		meta_title: page.data.meta_title || page.data.title,
+		meta_image: page.data.meta_image
 	};
 }
 

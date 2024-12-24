@@ -5,6 +5,6 @@
 	export let slice: Content.RichTextSlice;
 </script>
 
-<section data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
-	<PrismicRichText field={slice.primary.conte} />
-</section>
+<div class="max-w-prose">
+	<PrismicRichText field ={slice.primary.conte} />
+</div>
