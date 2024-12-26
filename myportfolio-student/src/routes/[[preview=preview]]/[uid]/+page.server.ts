@@ -9,7 +9,11 @@ export async function load({ params, fetch, cookies }) {
 	const page = await client.getByUID('page', params.uid);
 
 
-	const slices= await mapSliceZone(page.data.slices, mappers ,{client});
+
+
+	const slices= await mapSliceZone(page.data.slices,
+		mappers ,
+		{client});
 
 
 	return {

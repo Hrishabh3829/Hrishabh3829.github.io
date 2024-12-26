@@ -1,6 +1,6 @@
-import contentIndexMapper from '$lib/slices/Contentindex/index.svelte';
 
-export const mappers = {
+import contentIndexMapper from "./ContentIndex/mapper"
+
+export const mappers ={
 	content_index: contentIndexMapper
 }
-

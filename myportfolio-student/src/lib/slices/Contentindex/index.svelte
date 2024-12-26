@@ -3,10 +3,11 @@
 	import Bounded from '$lib/components/Bounded.svelte';
 	import Heading from '$lib/components/Heading.svelte';
 	import { PrismicRichText } from '@prismicio/svelte';
+	import ContentList from './ContentList.svelte'
 
 	export let slice: Content.ContentindexSlice;
 
-	export let items: Content.BlogpostDocument[] | Content.ProjectDocument[]
+	export let items: Content.BlogpostDocument[] | Content.ProjectDocument[];
 
 
 	console.log(items)
@@ -20,6 +21,10 @@
 		<div class="prose prose-xl prose-invert mb-10">
 			<PrismicRichText field={slice.primary.description} />
 		</div>
-
 	{/if}
+	<ContentList
+		{items}
+		fallbackItemImage={slice.primary.fallback_item_image}
+		viewMoreText={slice.primary.view_more_text}/>
+
 </Bounded>

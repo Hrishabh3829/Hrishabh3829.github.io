@@ -181,12 +181,45 @@ export type PageDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-type ProjectDocumentDataSlicesSlice = never;
+type ProjectDocumentDataSlicesSlice = RichTextSlice | ImageBlockSlice;
 
 /**
  * Content for Project documents
  */
 interface ProjectDocumentData {
+	/**
+	 * Title field in *Project*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: project.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#key-text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Date field in *Project*
+	 *
+	 * - **Field Type**: Date
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: project.date
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#date
+	 */
+	date: prismic.DateField;
+
+	/**
+	 * Hover Image field in *Project*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: project.hover_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/field#image
+	 */
+	hover_image: prismic.ImageField<never>;
+
 	/**
 	 * Slice Zone field in *Project*
 	 *
@@ -483,11 +516,11 @@ type BiographySliceVariation = BiographySliceDefault;
 export type BiographySlice = prismic.SharedSlice<'biography', BiographySliceVariation>;
 
 /**
- * Primary content in *Contentindex → Default → Primary*
+ * Primary content in *ContentIndex → Default → Primary*
  */
 export interface ContentindexSliceDefaultPrimary {
 	/**
-	 * Heading field in *Contentindex → Default → Primary*
+	 * Heading field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -497,7 +530,7 @@ export interface ContentindexSliceDefaultPrimary {
 	heading: prismic.KeyTextField;
 
 	/**
-	 * Content Type field in *Contentindex → Default → Primary*
+	 * Content Type field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Select
 	 * - **Placeholder**: *None*
@@ -507,7 +540,7 @@ export interface ContentindexSliceDefaultPrimary {
 	content_type: prismic.SelectField<'Blog' | 'Project'>;
 
 	/**
-	 * Description field in *Contentindex → Default → Primary*
+	 * Description field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Rich Text
 	 * - **Placeholder**: *None*
@@ -517,7 +550,7 @@ export interface ContentindexSliceDefaultPrimary {
 	description: prismic.RichTextField;
 
 	/**
-	 * View More Text field in *Contentindex → Default → Primary*
+	 * View More Text field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Text
 	 * - **Placeholder**: *None*
@@ -527,7 +560,7 @@ export interface ContentindexSliceDefaultPrimary {
 	view_more_text: prismic.KeyTextField;
 
 	/**
-	 * Fallback Item Image field in *Contentindex → Default → Primary*
+	 * Fallback Item Image field in *ContentIndex → Default → Primary*
 	 *
 	 * - **Field Type**: Image
 	 * - **Placeholder**: *None*
@@ -538,7 +571,7 @@ export interface ContentindexSliceDefaultPrimary {
 }
 
 /**
- * Default variation for Contentindex Slice
+ * Default variation for ContentIndex Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
@@ -551,12 +584,12 @@ export type ContentindexSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
- * Slice variation for *Contentindex*
+ * Slice variation for *ContentIndex*
  */
 type ContentindexSliceVariation = ContentindexSliceDefault;
 
 /**
- * Contentindex Shared Slice
+ * ContentIndex Shared Slice
  *
  * - **API ID**: `contentindex`
  * - **Description**: Contentindex
