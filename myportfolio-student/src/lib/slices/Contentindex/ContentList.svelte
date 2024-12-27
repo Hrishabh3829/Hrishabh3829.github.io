@@ -11,7 +11,7 @@
 
 
 <ul>
-	{#each items as post,index(post.id + index)}
+	{#each items as post, index (post.id + index)}
 		<li>
 			<PrismicLink document={post} class="flex flex-col justify-between border-t border-t-slate-100 py-10 text-slate-200 md:flex-row">
 				<div class="flex flex-col">

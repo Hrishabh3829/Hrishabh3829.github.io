@@ -1,6 +1,5 @@
+import contentIndexMapper from './ContentIndex/mapper';
 
-import contentIndexMapper from "./ContentIndex/mapper"
-
-export const mappers ={
-	content_index: contentIndexMapper
-}
+export const mappers = {
+	contentindex: contentIndexMapper
+};
