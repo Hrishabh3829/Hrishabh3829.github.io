@@ -4,6 +4,10 @@
 	import { PrismicPreview } from '@prismicio/svelte/kit';
 	import { page } from '$app/stores';
 	import { repositoryName } from '$lib/prismicio';
+	import Footer from '$lib/components/Footer.svelte';
+	import Header from '$lib/components/Header.svelte';
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -19,7 +23,18 @@
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
 </svelte:head>
+
+<Header settings="{data.settings}"/>
+
+
 <main>
 	<slot />
 </main>
+<div class="background-gradient absolute inset-0 -z-50 max-h-screen"/>
+<div class="pointer-events-none absolute inset-0 -z-50 h-full bg-[url('noisetexture.jpg')] opacity-20 mix-blend-soft-light"></div>
+
+
+<Footer settings={data.settings}/>
+
+
 <PrismicPreview {repositoryName} />

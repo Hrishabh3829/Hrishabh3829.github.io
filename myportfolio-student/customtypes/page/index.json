@@ -27,7 +27,19 @@
 				"fieldset": "Slice Zone",
 				"config": {
 					"choices": {
-						"rich_text": {
+						"contentindex": {
+							"type": "SharedSlice"
+						},
+						"experience": {
+							"type": "SharedSlice"
+						},
+						"tech_list": {
+							"type": "SharedSlice"
+						},
+						"biography": {
+							"type": "SharedSlice"
+						},
+						"hero": {
 							"type": "SharedSlice"
 						}
 					}
