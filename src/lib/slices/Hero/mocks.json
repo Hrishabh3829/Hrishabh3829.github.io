@@ -1,0 +1,24 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"tag_line": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Creative Developer"
+			},
+			"first_name": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Hrishabh"
+			},
+			"last_name": {
+				"__TYPE__": "FieldContent",
+				"type": "Text",
+				"value": "Gupta"
+			}
+		},
+		"items": []
+	}
+]
