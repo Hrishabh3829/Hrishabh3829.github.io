@@ -1,13 +1,14 @@
 <script lang="ts">
-	import {T as Threlte} from '@threlte/core';
+	import { T as Threlte } from '@threlte/core';
+	import { Float, createTransition } from '@threlte/extras';
 	import * as THREE from 'three';
-	import { createTransition, Float } from '@threlte/extras';
 	import gsap from 'gsap';
 	import { elasticOut } from 'svelte/easing';
+	import { onMount } from 'svelte';
 
-	export let position: [number,number,number]=[0,0,0];
-	export let geometry: THREE.BufferGeometry = new THREE.IcosahedronGeometry(3)
-	export let rate=0.5;
+	export let position: [number, number, number] = [0, 0, 0];
+	export let geometry: THREE.BufferGeometry = new THREE.IcosahedronGeometry(3);
+	export let rate = 0.5;
 
 	const soundEffects=[
 		new Audio('/Sounds/hit1.ogg'),
@@ -15,8 +16,8 @@
 		new Audio('/Sounds/hit3.ogg'),
 	]
 
-
-	let visible=false
+	let visible = false;
+	let reducedMotionRate = 0;
 
 	const materialParams = [
 		{ color: 0x2ecc71, roughness: 0 },
@@ -28,52 +29,64 @@
 		{ color: 0x2c3e50, roughness: 0.1, metalness: 0.5 }
 	];
 
-	function getRandomMaterial(){
-		const randomInt=gsap.utils.random(1,10,1)
-		if(randomInt===1){
+	function getRandomMaterial() {
+		const randomInt = gsap.utils.random(1, 10, 1);
+		if (randomInt === 1) {
 			return new THREE.MeshNormalMaterial();
 		}
 		return new THREE.MeshStandardMaterial(gsap.utils.random(materialParams));
-
 	}
 
-	function handleClick(event: MouseEvent){
+	function handleClick(event: MouseEvent) {
 		gsap.utils.random(soundEffects).play();
-		if('object' in event && event.object instanceof THREE.Mesh){
+		if ('object' in event && event.object instanceof THREE.Mesh) {
 			gsap.to(event.object.rotation, {
-				x: `+=${gsap.utils.random(0,3)}`,
-				y: `+=${gsap.utils.random(0,3)}`,
-				z: `+=${gsap.utils.random(0,3)}`,
-				duration:1.3,
+				x: `+=${gsap.utils.random(0, 3)}`,
+				y: `+=${gsap.utils.random(0, 3)}`,
+				z: `+=${gsap.utils.random(0, 3)}`,
+				duration: 1.3,
 				ease: 'elastic.out(1,0.3)',
-				yoyo: true,
-			})
+				yoyo: true
+			});
 
-			event.object.material=getRandomMaterial();
+			event.object.material = getRandomMaterial();
 		}
 	}
 
-	const bounce=createTransition((ref)=>{
-		return{
-			tick(t){
-				if(t>0) visible = true;
-				ref.scale.set(t,t,t)
+	const bounce = createTransition((ref) => {
+		return {
+			tick(t) {
+				if (t > 0) visible = true;
+				ref.scale.set(t, t, t);
 			},
 			easing: elasticOut,
-			duration: gsap.utils.random(800,1200),
-			delay: gsap.utils.random(0,500)
-		}
-	})
+			duration: gsap.utils.random(800, 1200),
+			delay: gsap.utils.random(0, 500)
+		};
+	});
 
+	onMount(() => {
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		reducedMotionRate = prefersReducedMotion ? 0 : 1;
+	});
 
-
+	$: compoundRate = rate * reducedMotionRate;
 </script>
 
-<Threlte.Group position={position.map((p)=> p*2)}>
-	<Float speed={5 * rate} rotationSpeed={5*rate} rotationIntensity={6*rate} floatIntensity={5*rate}>
-		<Threlte.Mesh {visible}{geometry} in={bounce} material={getRandomMaterial()}
-		interactive
-									on:click={handleClick}
+<Threlte.Group position={position.map((p) => p * 2)}>
+	<Float
+			speed={5 * compoundRate}
+			rotationSpeed={5 * compoundRate}
+			rotationIntensity={6 * compoundRate}
+			floatIntensity={5 * compoundRate}
+	>
+		<Threlte.Mesh
+				{visible}
+				{geometry}
+				in={bounce}
+				material={getRandomMaterial()}
+				interactive
+				on:click={handleClick}
 		></Threlte.Mesh>
 	</Float>
 </Threlte.Group>
