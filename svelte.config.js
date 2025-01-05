@@ -1,17 +1,17 @@
-import vercelAdapter from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Preprocessors for handling Svelte files
+	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
+	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 
 	kit: {
-		// Use the Vercel adapter for deployment
-		adapter: vercelAdapter({
-			// You can specify Vercel adapter options here if needed
-			// For example: edge: true for edge functions
-		})
+		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
+		// See https://kit.svelte.dev/docs/adapters for more information about adapters.
+		adapter: adapter()
 	}
 };
 
