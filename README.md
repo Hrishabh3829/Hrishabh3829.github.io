@@ -11,7 +11,7 @@ Want to quickly get started building your own project with [Prismic][prismic] an
 
 &nbsp;
 
-## 🚀 Quick Start
+## 🚀 Quick Start 
 
 To start a new project using this starter, run the following commands in your terminal:
 
