@@ -13,7 +13,7 @@ Want to quickly get started building your own project with [Prismic][prismic] an
 
 ## 🚀 Quick Start 
 
-To start a new project using this starter, run the following commands in your terminal:
+To start a new project using this starter, run the following commands in your terminal :
 
 ```sh
 npx @slicemachine/init@latest --starter sveltekit-starter-prismic-minimal
