@@ -24,7 +24,6 @@
 		"@iconify-json/simple-icons": "^1.2.16",
 		"@iconify-json/uiw": "^1.2.1",
 		"@slicemachine/adapter-sveltekit": "^0.3.60",
-		"@sveltejs/adapter-auto": "^3.2.2",
 		"@sveltejs/adapter-netlify": "^6.0.4",
 		"@sveltejs/kit": "^2.5.15",
 		"@sveltejs/vite-plugin-svelte": "^3.1.1",
