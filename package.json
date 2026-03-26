@@ -2,6 +2,11 @@
 	"name": "sveltekit-starter-prismic-minimal",
 	"version": "0.0.1",
 	"private": true,
+
+    "engines": {
+    "node": ">=20"
+    },
+
 	"scripts": {
 		"dev": "concurrently \"npm:vite:dev\" \"npm:slicemachine\" --prefix-colors blue,magenta",
 		"vite:dev": "vite dev",
